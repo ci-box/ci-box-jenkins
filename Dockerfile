@@ -8,7 +8,7 @@ RUN apt -q update && DEBIAN_FRONTEND=noninteractive apt-get -q -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y install ${extra_packages}
 
 ARG plugins=""
-RUN if [ ! -z "${plugins}" ]; then /usr/local/bin/install-plugins.sh ${plugins}; fi
+RUN if [ ! -z "${plugins}" ]; then jenkins-plugin-cli -p ${plugins}; fi
 
 # TODO migrate to secret
 ARG admin_username=admin
